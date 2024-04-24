@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD de Nombres</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<header> 
+    
+    <h1>CRUD de Nombres</h1>
+
+</header>
+<body>
+    <div id="app">
+       
+        <form @submit.prevent="agregarNombre">
+            <input type="text" v-model="nuevoNombre" placeholder="Nombre" required>
+            <input type="text" v-model="nuevoApellido" placeholder="Apellido" required>
+            <button type="submit">Agregar</button>
+        </form>
+        <ul>
+            <li v-for="(nombre, index) in nombres" :key="index">
+                {{ nombre.nombre }} {{ nombre.apellido }}
+                <button @click="editarNombre(index)">Editar</button>
+                <button @click="eliminarNombre(index)">Eliminar</button>
+            </li>
+        </ul>
+        <section v-if="nombreEditado !== null">
+            <input type="text" v-model="nombreEditado.nombre" placeholder="Nombre" required>
+            <input type="text" v-model="nombreEditado.apellido" placeholder="Apellido" required>
+            <button @click="guardarEdicion">Guardar</button>
+            <button @click="cancelarEdicion">Cancelar</button>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
